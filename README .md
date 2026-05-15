@@ -247,27 +247,6 @@ medethics/
 
 ---
 
-## AI Tools Usage
-
-AI tools (Claude by Anthropic) were used during development for:
-
-- Generating the initial project scaffold and boilerplate Django code
-- Designing the CSS theme (dark academia aesthetic, CSS variables, animations)
-- Debugging template rendering issues (e.g. block placement for auth pages)
-- Writing the README documentation
-
-All code was reviewed, understood, and verified by the student. The student is responsible for understanding every part of the project and is able to explain its structure and modify it.
-
----
-
-## Task Distribution
-
-*This project was completed by 1 student.*
-
-All tasks — project setup, models, views, forms, templates, CSS, URL routing, editor workflow, bonus features — were done by the same student.
-
----
-
 ## Notes
 
 - The database file (`db.sqlite3`) is included. It may or may not contain test data.
