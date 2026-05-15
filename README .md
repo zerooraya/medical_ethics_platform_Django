@@ -12,17 +12,16 @@ This platform allows registered users to submit posts in five categories. Editor
 
 ## Screenshots
 
+## Screenshots
+
 ### Home Page
-![Home Page](screenshots/home.png)
-*Hero section with medical photo background, 3D floating category cards, and latest approved posts*
+![Home Page](screenshotshome.png)
 
 ### Browse Posts Page
-![Browse Posts](screenshots/browse.png)
-*All approved posts with category filter chips and photo banner*
+![Browse Posts](screenshotsbrowse.png)
 
 ### Login Page
-![Login Page](screenshots/login.png)
-*Full-screen login with dark medical background and glassmorphism card*
+![Login Page](screenshotslogin.png)
 
 ---
 
