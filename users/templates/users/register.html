@@ -1,0 +1,33 @@
+{% extends 'blog/base.html' %}
+{% block title %}Register — Medical Ethics Platform{% endblock %}
+
+{% block content %}{% endblock %}
+{% block sidebar %}{% endblock %}
+
+{% block extra_js %}
+<div class="auth-page">
+  <div class="auth-page-bg"></div>
+  <div class="auth-box">
+    <div class="auth-logo-wrap">
+      <div class="auth-logo-icon"><i class="bi bi-heart-pulse-fill"></i></div>
+      <h2>Create Account</h2>
+      <p>Join the Medical Ethics Platform community</p>
+    </div>
+    <form method="POST" novalidate>
+      {% csrf_token %}
+      {% for field in form %}
+      <div class="mb-3">
+        <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+        {% if field.errors %}<div class="text-danger small mt-1">{{ field.errors.0 }}</div>{% endif %}
+      </div>
+      {% endfor %}
+      <button type="submit" class="btn btn-primary w-100 mt-2"><i class="bi bi-person-plus me-1"></i>Create Account</button>
+    </form>
+    <div class="text-center mt-3 small" style="color:var(--text-soft)">
+      Already have an account? <a href="{% url 'login' %}" style="color:var(--gold);font-weight:600">Login</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

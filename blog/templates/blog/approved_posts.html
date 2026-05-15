@@ -1,0 +1,58 @@
+{% extends 'blog/base.html' %}
+{% block title %}Browse Posts — Medical Ethics Sharing Platform{% endblock %}
+
+{% block content %}
+<div class="page-banner mb-4">
+  <div class="page-banner-bg banner-browse"></div>
+  <div class="page-banner-inner">
+    <h2><i class="bi bi-journal-text me-2"></i>Browse Approved Posts</h2>
+    <p>Explore ethics-related content shared by our community</p>
+  </div>
+</div>
+
+<div class="d-flex flex-wrap gap-2 mb-4">
+  <a href="{% url 'approved-posts' %}" class="chip chip-default {% if not active_cat %}fw-bold{% endif %}">All Posts</a>
+  {% for cat in categories %}{% with s=cat.slug %}
+  <a href="{% url 'approved-posts' %}?category={{ cat.slug }}"
+     class="chip {% if s == 'films' %}chip-films{% elif s == 'theatre-plays' %}chip-theatre{% elif s == 'literary-texts' %}chip-literary{% elif s == 'clinical-ethics-cases' %}chip-clinical{% elif s == 'ethics-news' %}chip-news{% else %}chip-default{% endif %} {% if active_cat == cat.slug %}fw-bold{% endif %}">
+    {{ cat.name }}
+  </a>{% endwith %}{% endfor %}
+</div>
+
+{% if posts %}
+  {% for post in posts %}
+  <div class="post-card">
+    <div class="post-card-top">
+      <div class="post-avatar">{{ post.author.username|first|upper }}</div>
+      <div class="flex-grow-1">
+        <div class="post-meta-name">{{ post.author.username }}</div>
+        <div class="post-meta-date"><i class="bi bi-clock me-1"></i>{{ post.created_at|date:"F d, Y" }}</div>
+      </div>
+      {% if post.category %}{% with s=post.category.slug %}
+      <span class="chip {% if s == 'films' %}chip-films{% elif s == 'theatre-plays' %}chip-theatre{% elif s == 'literary-texts' %}chip-literary{% elif s == 'clinical-ethics-cases' %}chip-clinical{% elif s == 'ethics-news' %}chip-news{% else %}chip-default{% endif %}">
+        {{ post.category.name }}
+      </span>{% endwith %}{% endif %}
+    </div>
+    <div class="post-card-body">
+      <h2 class="post-card-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+      {% if post.content %}<p class="post-card-desc">{{ post.content|truncatewords:35 }}</p>{% endif %}
+      {% if post.link %}
+        <a href="{{ post.link }}" class="post-link-chip" target="_blank" rel="noopener">
+          <i class="bi bi-link-45deg"></i> {{ post.link|truncatechars:50 }}
+        </a>
+      {% endif %}
+    </div>
+    <div class="post-card-bottom">
+      <span class="small" style="color:var(--text-soft)">{{ post.created_at|date:"M d, Y" }}</span>
+      <a href="{{ post.get_absolute_url }}" class="btn-read-more">Read more <i class="bi bi-arrow-right"></i></a>
+    </div>
+  </div>
+  {% endfor %}
+{% else %}
+  <div class="empty-state">
+    <i class="bi bi-journal-x"></i>
+    <h4>No posts yet</h4>
+    <p>No approved posts in this category.</p>
+  </div>
+{% endif %}
+{% endblock %}

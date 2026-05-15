@@ -1,0 +1,43 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{ category.name }} — Medical Ethics Platform{% endblock %}
+
+{% block content %}
+<div class="page-banner mb-4">
+  <div class="page-banner-bg banner-category"></div>
+  <div class="page-banner-inner">
+    <h2>
+      {% if category.slug == 'films' %}🎬{% elif category.slug == 'theatre-plays' %}🎭{% elif category.slug == 'literary-texts' %}📚{% elif category.slug == 'clinical-ethics-cases' %}🏥{% elif category.slug == 'ethics-news' %}📰{% endif %}
+      {{ category.name }}
+    </h2>
+    <p>Browsing all approved posts in this category</p>
+  </div>
+</div>
+
+{% if posts %}
+  {% for post in posts %}
+  <div class="post-card">
+    <div class="post-card-top">
+      <div class="post-avatar">{{ post.author.username|first|upper }}</div>
+      <div class="flex-grow-1">
+        <div class="post-meta-name">{{ post.author.username }}</div>
+        <div class="post-meta-date"><i class="bi bi-clock me-1"></i>{{ post.created_at|date:"F d, Y" }}</div>
+      </div>
+    </div>
+    <div class="post-card-body">
+      <h2 class="post-card-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+      {% if post.content %}<p class="post-card-desc">{{ post.content|truncatewords:35 }}</p>{% endif %}
+    </div>
+    <div class="post-card-bottom">
+      <span></span>
+      <a href="{{ post.get_absolute_url }}" class="btn-read-more">Read more <i class="bi bi-arrow-right"></i></a>
+    </div>
+  </div>
+  {% endfor %}
+{% else %}
+  <div class="empty-state">
+    <i class="bi bi-folder-x"></i>
+    <h4>No posts in this category yet</h4>
+    <p>Be the first to submit something here.</p>
+  </div>
+{% endif %}
+{% endblock %}
