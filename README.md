@@ -12,8 +12,6 @@ This platform allows registered users to submit posts in five categories. Editor
 
 ## Screenshots
 
-## Screenshots
-
 ### Home Page
 ![Home Page](screenshotshome.png)
 
